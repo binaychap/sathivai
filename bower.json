@@ -1,0 +1,22 @@
+{
+  "name": "bower-sathivai",
+  "authors": [
+    "Binay Rai"
+  ],
+  "description": "bower sathivai",
+  "main": "",
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "src/main/resources/static/lib",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "^3.2.1",
+    "bootstrap": "boostrap#^3.3.7"
+  }
+}
