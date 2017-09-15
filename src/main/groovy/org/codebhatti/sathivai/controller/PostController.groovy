@@ -27,4 +27,10 @@ class PostController {
         model.addAttribute("post", postService.getBySlug(slug))
         return "post/view"
     }
+
+    @RequestMapping("test")
+    String test(@PathVariable(value="slug") String slug, Model model){
+        model.addAttribute("post", postService.getBySlug(slug))
+        return "post/view"
+    }
 }
