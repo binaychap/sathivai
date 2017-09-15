@@ -19,4 +19,9 @@ class HomeController {
         model.addAttribute("post",post)
         return "index"
     }
+
+    @RequestMapping("/hello")
+     String hello(){
+        return "hello"
+    }
 }
