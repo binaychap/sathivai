@@ -1,6 +1,6 @@
 buildscript {
 	ext {
-		springBootVersion = '1.5.6.RELEASE'
+		springBootVersion = '1.5.8.RELEASE'
 	}
 	repositories {
 		mavenCentral()
@@ -28,16 +28,19 @@ repositories {
 
 
 dependencies {
-	compile('org.springframework.boot:spring-boot-starter-data-jpa')
+	//compile('org.springframework.boot:spring-boot-starter-data-jpa')
 	compile('org.springframework.boot:spring-boot-starter-web')
 	compile('org.codehaus.groovy:groovy')
-	runtime('com.h2database:h2')
-	runtime('mysql:mysql-connector-java')
-	compile("org.springframework.boot:spring-boot-devtools")
+	compile 'org.springframework.boot:spring-boot-starter-data-elasticsearch'
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 	compile group: 'org.webjars', name: 'bootstrap', version: '3.3.7-1'
 	compile group: 'org.webjars.bower', name: 'jquery', version: '3.2.1'
-	compile group: 'org.springframework.boot', name: 'spring-boot-starter-thymeleaf', version: '1.5.6.RELEASE'
+	compile 'org.springframework.boot:spring-boot-starter-thymeleaf'
+	compile 'org.springframework.data:spring-data-mongodb'
+	compile('org.springframework.boot:spring-boot-starter-data-rest')
+
+	// https://mvnrepository.com/artifact/com.sun.jna/jna
+	compile group: 'com.sun.jna', name: 'jna', version: '3.0.9'
 
 
 }

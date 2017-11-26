@@ -1,29 +1,31 @@
 package org.codebhatti.sathivai.domain
 
-import javax.persistence.Entity
-import javax.persistence.GeneratedValue
-import javax.persistence.Id
-import javax.persistence.OneToMany
+import org.springframework.data.annotation.Id
+import org.springframework.data.mongodb.core.mapping.DBRef
+import org.springframework.data.mongodb.core.mapping.Document
 
 
-@Entity
+
+
+@Document
 class Author {
-    @Id
-    @GeneratedValue
-    Long id;
-    String firstName
-    String lastName
-    String email
+     @Id
+     BigInteger id
+     String firstName
+     String lastName
+     String email
 
-    @OneToMany( mappedBy='author')
-    List<Post> posts;
+    @DBRef
+    List<Post> posts
 
-    Author() {
+    Author(){
+        posts = new ArrayList<Post>()
     }
 
-    Author(String firstName, String lastName) {
-        this.firstName = firstName
-        this.lastName = lastName
+    @Override
+    String toString() {
+        return "Author [firstName=" + firstName + ", lastName=" + lastName + ", email=" + email + "]";
     }
+
 
 }
