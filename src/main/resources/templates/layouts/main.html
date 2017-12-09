@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en"
 	xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:th="http://www.thymeleaf.org">
+	xmlns:th="http://www.thymeleaf.org"
+	  xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
 	<meta charset="utf-8" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -44,7 +45,12 @@
 				            </ul>
 				        </li>				        
 				    </ul>
-				    <p class="navbar-text navbar-right">Signed in as <a href="#" class="navbar-link">Guest User</a></p>
+					<div class="navbar-text navbar-right">
+						Welcome <span sec:authentication="name">Guest</span>
+						<form sec:authorize="isAuthenticated()" id="frmlogout" th:action="@{/logout}" method="post" class="form-inline">
+							| <a href="javascript:{}" onclick="document.getElementById('frmlogout').submit(); return false;">Logout</a>
+						</form>
+					</div>
 				</div>
 		    </div>
 		</nav>
