@@ -8,6 +8,7 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity
 import org.springframework.security.config.annotation.web.builders.HttpSecurity
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter
+import org.springframework.security.core.userdetails.UserDetailsService
 
 /**
  * Created by binai_rai on 11/26/17.
@@ -18,21 +19,17 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 @Order(SecurityProperties.ACCESS_OVERRIDE_ORDER)
 class SecurityConfig extends WebSecurityConfigurerAdapter {
 
+
     @Autowired
-    public void configureAuth(AuthenticationManagerBuilder auth) throws Exception{
-        auth
-                .inMemoryAuthentication()
-                .withUser("dan")
-                .password("password")
-                .roles("ADMIN")
-                .and()
-                .withUser("joe")
-                .password("password")
-                .roles("USER")
+    private UserDetailsService userService
+
+    @Autowired
+    void configureAuth(AuthenticationManagerBuilder auth) throws Exception{
+        auth.userDetailsService(userService)
     }
 
     @Override
-    protected void configure(HttpSecurity http) throws Exception {
+    void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
                 .antMatchers("/admin/**").hasRole("ADMIN")

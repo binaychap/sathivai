@@ -2,8 +2,10 @@ package org.codebhatti.sathivai
 
 import org.codebhatti.sathivai.domain.Author
 import org.codebhatti.sathivai.domain.Post
+import org.codebhatti.sathivai.domain.User
 import org.codebhatti.sathivai.repository.AuthorRepository
 import org.codebhatti.sathivai.repository.PostRepository
+import org.codebhatti.sathivai.repository.UserRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 
@@ -20,10 +22,13 @@ class DatabaseLoader {
     @Autowired
     AuthorRepository authorRepository
 
+    @Autowired
+    UserRepository userRepository
+
     @PostConstruct
     private void initDatabase(){
 
-        authorRepository.deleteAll();
+        authorRepository.deleteAll()
         Author dv = new Author()
         dv.setFirstName("Dan")
         dv.setLastName("Vega")
@@ -43,6 +48,14 @@ class DatabaseLoader {
 
         dv.getPosts().add(post)
         authorRepository.save(dv)
+
+        userRepository.deleteAll()
+
+
+        def user = new User(id: 12, email: "binaychap@gmail.com",password: "1234",fullName: "Binay rai",roles: ["ROLE_ADMIN","ROLE_USER"] as Set )
+
+        userRepository.save(user)
+
 
     }
 
